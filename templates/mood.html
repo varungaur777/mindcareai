@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="max-w-3xl mx-auto px-4 py-10">
+    <h2 class="text-2xl font-semibold mb-2">Mood Assessment</h2>
+    <p class="text-slate-300 text-sm mb-6">
+        Rate how you have been feeling recently. This is not a diagnosis, but a simple reflection tool.
+    </p>
+
+    {% if result %}
+        <div class="mb-6 p-4 rounded-xl bg-slate-900 border border-slate-800">
+            <p class="text-sm text-slate-300 mb-1">Your mood score:</p>
+            <p class="text-3xl font-bold mb-1">{{ score }} / 100</p>
+            <p class="text-sm text-teal-300 font-semibold">{{ label }}</p>
+            <p class="text-xs text-slate-400 mt-2">
+                You can view your mood history and trends in the Dashboard section.
+            </p>
+        </div>
+    {% endif %}
+
+    <form method="post" class="space-y-5 bg-slate-900 border border-slate-800 rounded-xl p-5">
+        <div>
+            <label class="question-label">1. How often have you felt calm and relaxed?</label>
+            <select name="q1" class="input-select">
+                <option value="5">Very often</option>
+                <option value="4">Often</option>
+                <option value="3">Sometimes</option>
+                <option value="2">Rarely</option>
+                <option value="1">Almost never</option>
+            </select>
+        </div>
+        <div>
+            <label class="question-label">2. How often have you felt stressed or under pressure?</label>
+            <select name="q2" class="input-select">
+                <option value="1">Almost never</option>
+                <option value="2">Rarely</option>
+                <option value="3">Sometimes</option>
+                <option value="4">Often</option>
+                <option value="5">Very often</option>
+            </select>
+        </div>
+        <div>
+            <label class="question-label">3. How well have you been sleeping?</label>
+            <select name="q3" class="input-select">
+                <option value="5">Very well</option>
+                <option value="4">Well</option>
+                <option value="3">Okay</option>
+                <option value="2">Poorly</option>
+                <option value="1">Very poorly</option>
+            </select>
+        </div>
+        <div>
+            <label class="question-label">4. How connected do you feel to people around you?</label>
+            <select name="q4" class="input-select">
+                <option value="5">Very connected</option>
+                <option value="4">Connected</option>
+                <option value="3">Neutral</option>
+                <option value="2">A bit isolated</option>
+                <option value="1">Very isolated</option>
+            </select>
+        </div>
+        <div>
+            <label class="question-label">5. How hopeful do you feel about the near future?</label>
+            <select name="q5" class="input-select">
+                <option value="5">Very hopeful</option>
+                <option value="4">Hopeful</option>
+                <option value="3">Neutral</option>
+                <option value="2">A bit worried</option>
+                <option value="1">Very worried</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn-primary w-full">Calculate Mood Score</button>
+    </form>
+</section>
+{% endblock %}

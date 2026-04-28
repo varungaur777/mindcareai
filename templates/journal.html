@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="max-w-4xl mx-auto px-4 py-10">
+    <h2 class="text-2xl font-semibold mb-2">Journal</h2>
+    <p class="text-slate-300 text-sm mb-4">
+        Use this space to write freely about your thoughts and feelings. Journaling can help you notice patterns and
+        release emotional tension.
+    </p>
+
+    <form method="post" class="mb-6 bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-3">
+        <textarea name="content" rows="4" class="input-text w-full" placeholder="Write whatever is on your mind..."></textarea>
+        <button type="submit" class="btn-primary w-full">Save Entry</button>
+    </form>
+
+    <h3 class="text-sm font-semibold mb-3">Previous Entries</h3>
+    <div class="space-y-3 max-h-80 overflow-y-auto">
+        {% for entry in entries %}
+            <article class="bg-slate-900 border border-slate-800 rounded-xl p-3 text-sm">
+                <p class="text-slate-300 whitespace-pre-line">{{ entry.content }}</p>
+                <p class="text-[10px] text-slate-500 mt-2">
+                    {{ entry.created_at.strftime("%d %b %Y, %I:%M %p") }}
+                </p>
+            </article>
+        {% else %}
+            <p class="text-xs text-slate-500">No journal entries yet.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
